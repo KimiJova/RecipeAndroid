@@ -1,26 +1,27 @@
 package com.example.recipeapp;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import com.google.firebase.FirebaseApp;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TextView welcomeTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        welcomeTextView = findViewById(R.id.textViewWelcomeMessage);
+
+        // Retrieving the username from the LoginActivity
+        String username = getIntent().getStringExtra("message_key");
+
+        // Displaying the welcome message with the username of the current logged in user
+        if (username != null && !username.isEmpty()) {
+            welcomeTextView.setText("Welcome " + username + " to Recipe App!");
+        }
     }
 }

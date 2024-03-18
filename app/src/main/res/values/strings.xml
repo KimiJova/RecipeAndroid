@@ -4,4 +4,6 @@
     <string name="hint2">Password</string>
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign Up</string>
+    <string name="browse_recipes">Browse Recipes</string>
+    <string name="add_recipes">Add Recipes</string>
 </resources>
