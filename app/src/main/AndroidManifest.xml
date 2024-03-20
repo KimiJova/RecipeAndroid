@@ -17,7 +17,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="false">
-            <!-- Remove the intent filter if this activity is not the launcher activity -->
+        </activity>
+
+        <activity
+            android:name=".BrowseRecipeActivity"
+            android:exported="false">
         </activity>
 
         <activity
@@ -28,6 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

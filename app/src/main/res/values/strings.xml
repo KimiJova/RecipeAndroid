@@ -6,4 +6,8 @@
     <string name="sign_up">Sign Up</string>
     <string name="browse_recipes">Browse Recipes</string>
     <string name="add_recipes">Add Recipes</string>
+    <string name="refresh_recipes">Refresh recipes</string>
+    <string name="home">Return to Home Page</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="instructions">instructions</string>
 </resources>

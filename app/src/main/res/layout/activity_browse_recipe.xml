@@ -1,6 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Toolbar -->
+
+    <!-- Filter EditText -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <!-- Left-aligned plus button -->
+        <ImageButton
+            android:id="@+id/btn_refresh"
+            android:layout_width="120px"
+            android:layout_height="120px"
+            android:layout_gravity="start"
+            android:contentDescription="@string/refresh_recipes"
+            android:background="@drawable/refresh"/>
+
+        <!-- Right-aligned home button -->
+        <ImageButton
+            android:id="@+id/btn_home"
+            android:layout_width="130px"
+            android:layout_height="130px"
+            android:layout_marginRight="40px"
+            android:layout_gravity="end"
+            android:contentDescription="@string/home"
+            android:background="@drawable/home"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/editTextFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:hint="Filter" />
+
+    <!-- Recipe RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewRecipes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/editTextFilter"
+        android:padding="8dp" />
+
+</RelativeLayout>

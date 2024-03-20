@@ -4,13 +4,17 @@ public class Recipes {
     private String dishName;
     private String preparationTime;
     private String dishType;
+    private String ingredients;
+    private String instructions;
 
     public Recipes() {}
 
-    public Recipes(String dishName, String preparationTime, String dishType) {
+    public Recipes(String dishName, String preparationTime, String dishType, String ingredients, String instructions) {
         this.dishName = dishName;
         this.preparationTime = preparationTime;
         this.dishType = dishType;
+        this.ingredients = ingredients;
+        this.instructions = instructions;
     }
 
     public String getDishName() {
@@ -31,6 +35,22 @@ public class Recipes {
 
     public String getDishType() {
         return dishType;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
     }
 
     public void setDishType(String dishType) {

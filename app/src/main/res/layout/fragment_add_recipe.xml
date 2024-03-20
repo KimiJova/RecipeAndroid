@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="@color/white">
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add New Recipe"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Recipe Name -->
+    <EditText
+        android:id="@+id/editTextRecipeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Recipe Name"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Preparation Time -->
+    <EditText
+        android:id="@+id/editTextPreparationTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Preparation Time"
+        android:inputType="number"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Dish Type -->
+    <EditText
+        android:id="@+id/editTextDishType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Dish Type"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/editTextIngredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/ingredients"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/editTextInstructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/instructions"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Add Recipe Button -->
+    <Button
+        android:id="@+id/buttonAddRecipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Recipe"
+        android:backgroundTint="@color/black"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>
