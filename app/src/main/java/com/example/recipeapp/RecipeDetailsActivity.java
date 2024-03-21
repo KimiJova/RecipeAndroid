@@ -32,5 +32,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         textViewIngredients.setText("Ingredients: " + ingredients);
         textViewInstructions.setText("Instructions: " + instructions);
         textViewAuthor.setText("Recipe made by: " + recipeAuthor);
+        //FOR COMMIT
+
     }
 }
