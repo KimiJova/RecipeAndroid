@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add New Recipe"
+        android:text="@string/add_new_recipe"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_gravity="center"
@@ -22,7 +22,7 @@
         android:id="@+id/editTextRecipeName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Recipe Name"
+        android:hint="@string/recipe_name"
         android:layout_marginBottom="16dp" />
 
     <!-- Preparation Time -->
@@ -30,7 +30,7 @@
         android:id="@+id/editTextPreparationTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Preparation Time"
+        android:hint="@string/preparation"
         android:inputType="number"
         android:layout_marginBottom="16dp" />
 
@@ -39,7 +39,7 @@
         android:id="@+id/editTextDishType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Dish Type"
+        android:hint="@string/dish_type"
         android:layout_marginBottom="16dp" />
 
     <EditText
@@ -47,6 +47,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/ingredients"
+        android:maxLines="2"
+        android:scrollHorizontally="true"
+        android:gravity="start|top"
+        android:ellipsize="end"
         android:layout_marginBottom="16dp" />
 
     <EditText
@@ -54,6 +58,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/instructions"
+        android:maxLines="2"
+        android:scrollHorizontally="true"
+        android:gravity="start|top"
+        android:ellipsize="end"
         android:layout_marginBottom="24dp" />
 
     <!-- Add Recipe Button -->
@@ -61,7 +69,7 @@
         android:id="@+id/buttonAddRecipe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Recipe"
+        android:text="@string/add_recipe"
         android:backgroundTint="@color/black"
         android:textColor="@android:color/white" />
 

@@ -6,15 +6,19 @@ public class Recipes {
     private String dishType;
     private String ingredients;
     private String instructions;
+    private String ID;
+    private String recipeAuthor;
 
     public Recipes() {}
 
-    public Recipes(String dishName, String preparationTime, String dishType, String ingredients, String instructions) {
+    public Recipes(String dishName, String preparationTime, String dishType, String ingredients, String instructions, String ID, String recipeAuthor) {
         this.dishName = dishName;
         this.preparationTime = preparationTime;
         this.dishType = dishType;
         this.ingredients = ingredients;
         this.instructions = instructions;
+        this.ID = ID;
+        this.recipeAuthor = recipeAuthor;
     }
 
     public String getDishName() {
@@ -55,5 +59,21 @@ public class Recipes {
 
     public void setDishType(String dishType) {
         this.dishType = dishType;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getRecipeAuthor() {
+        return recipeAuthor;
+    }
+
+    public void setRecipeAuthor(String recipeAuthor) {
+        this.recipeAuthor = recipeAuthor;
     }
 }

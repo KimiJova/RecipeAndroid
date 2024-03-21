@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                                         username.setText("");
                                         password.setText("");
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                        intent.putExtra("message_key", user);
+                                        intent.putExtra("username", user);
                                         startActivity(intent);
                                     } else {
                                         Toast.makeText(LoginActivity.this, "Signup failed.", Toast.LENGTH_SHORT).show();
@@ -132,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                                     username.setText("");
                                     password.setText("");
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.putExtra("message_key", user);
+                                    intent.putExtra("username", user);
                                     startActivity(intent);
                                 } else {
                                     Toast.makeText(LoginActivity.this, "Incorrect password.", Toast.LENGTH_SHORT).show();

@@ -30,6 +30,7 @@ public class BrowseRecipeActivity extends AppCompatActivity {
     private ImageButton homeButton;
     private ImageButton refreshButton;
     private EditText editTextFilter;
+    private String username;
 
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
     private DatabaseReference recipesRef;
@@ -43,12 +44,14 @@ public class BrowseRecipeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         recipeList = new ArrayList<>();
-        adapter = new RecipeAdapter(recipeList);
+        adapter = new RecipeAdapter(recipeList, this);
         recyclerView.setAdapter(adapter);
 
         homeButton = findViewById(R.id.btn_home);
         refreshButton = findViewById(R.id.btn_refresh);
         editTextFilter = findViewById(R.id.editTextFilter);
+
+        username = getIntent().getStringExtra("username");
 
         recipesRef = FirebaseDatabase.getInstance().getReference("Recipes");
 
@@ -58,7 +61,9 @@ public class BrowseRecipeActivity extends AppCompatActivity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BrowseRecipeActivity.this, MainActivity.class));
+                Intent intentHome = new Intent(BrowseRecipeActivity.this, MainActivity.class);
+                intentHome.putExtra("username", username);
+                startActivity(intentHome);
             }
         });
 

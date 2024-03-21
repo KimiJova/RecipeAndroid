@@ -33,6 +33,15 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".RecipeDetailsActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".EditRecipeActivity"
+            android:exported="false">
+        </activity>
     </application>
 
 </manifest>

@@ -6,8 +6,14 @@
     <string name="sign_up">Sign Up</string>
     <string name="browse_recipes">Browse Recipes</string>
     <string name="add_recipes">Add Recipes</string>
+    <string name="add_recipe">Add Recipe</string>
     <string name="refresh_recipes">Refresh recipes</string>
     <string name="home">Return to Home Page</string>
     <string name="ingredients">Ingredients</string>
     <string name="instructions">instructions</string>
+    <string name="dish_type">Dish Type</string>
+    <string name="preparation">Preparation Time(in minutes)</string>
+    <string name="recipe_name">Recipe Name</string>
+    <string name="add_new_recipe">Add New Recipe</string>
+    <string name="save_changes">Save Changes</string>
 </resources>

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         AddRecipeFragment addRecipeFragment = new AddRecipeFragment();
 
         // Retrieving the username from the LoginActivity
-        String username = getIntent().getStringExtra("message_key");
+        String username = getIntent().getStringExtra("username");
 
         // Displaying the welcome message with the username of the current logged in user
         if (username != null && !username.isEmpty()) {
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, BrowseRecipeActivity.class);
+                intent.putExtra("username", username);
                 startActivity(intent);
             }
         });
@@ -45,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
         addNewRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("username", username);
+                addRecipeFragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().add(R.id.fragmentLayout, addRecipeFragment).addToBackStack(null).commit();
             }
         });

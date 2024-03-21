@@ -25,6 +25,7 @@ public class AddRecipeFragment extends Fragment {
     private Button buttonAddRecipe;
     private FirebaseDatabase db;
     private DatabaseReference ref;
+    private String recipeAuthor;
 
     @Nullable
     @Override
@@ -39,6 +40,11 @@ public class AddRecipeFragment extends Fragment {
         editTextIngredients = view.findViewById(R.id.editTextIngredients);
         editTextInstructions = view.findViewById(R.id.editTextInstructions);
         buttonAddRecipe = view.findViewById(R.id.buttonAddRecipe);
+
+        Bundle args = getArguments();
+        if (args != null) {
+            recipeAuthor = args.getString("username");
+        }
 
         // Set click listener for Add Recipe button
         buttonAddRecipe.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +63,7 @@ public class AddRecipeFragment extends Fragment {
                     return;
                 }
 
-                // TODO: Add the recipe to the database and notify BrowseRecipeActivity
+
                 db = FirebaseDatabase.getInstance();
                 ref = db.getReference("Recipes");
 
@@ -67,7 +73,8 @@ public class AddRecipeFragment extends Fragment {
                         if (snapshot.exists()) {
                             Toast.makeText(getContext(), "Recipe already exists.", Toast.LENGTH_SHORT).show();
                         } else {
-                            Recipes recipe = new Recipes(recipeName, preparationTime, dishType, ingredients, instructions);
+                            String recipeID = ref.push().getKey();
+                            Recipes recipe = new Recipes(recipeName, preparationTime, dishType, ingredients, instructions, recipeID, recipeAuthor);
 
                             ref.child(recipeName).setValue(recipe).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
