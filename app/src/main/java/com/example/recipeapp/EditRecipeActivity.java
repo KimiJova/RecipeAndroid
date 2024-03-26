@@ -1,5 +1,6 @@
 package com.example.recipeapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,10 +21,11 @@ import com.google.firebase.database.ValueEventListener;
 
 public class EditRecipeActivity extends AppCompatActivity {
 
-    private EditText editTextRecipeName, editTextIngredients, editTextInstructions;
+    private EditText editTextRecipeName, editTextIngredients, editTextInstructions, editTextDishType, editTextPreperation;
     private Button buttonSaveChanges;
-    private String dishName;
+    private String dishName, authorName, recipeID;
     private DatabaseReference recipeRef;
+    private DatabaseReference newRecipeRef;
 
 
     @Override
@@ -30,6 +34,8 @@ public class EditRecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_recipe);
 
         editTextRecipeName = findViewById(R.id.editTextRecipeName2);
+        editTextPreperation = findViewById(R.id.editTextPreparationTime2);
+        editTextDishType = findViewById(R.id.editTextDishType2);
         editTextIngredients = findViewById(R.id.editTextIngredients2);
         editTextInstructions = findViewById(R.id.editTextInstructions2);
         buttonSaveChanges = findViewById(R.id.buttonSaveChanges);
@@ -37,17 +43,23 @@ public class EditRecipeActivity extends AppCompatActivity {
         //Get name from intent extras
         dishName = getIntent().getStringExtra("dishName");
 
+        //Get author from intent extras
+        authorName = getIntent().getStringExtra("recipeAuthor");
+
         recipeRef = FirebaseDatabase.getInstance().getReference("Recipes").child(dishName);
 
-        recipeRef.orderByChild("dishName").equalTo(dishName).addListenerForSingleValueEvent(new ValueEventListener() {
+        recipeRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     Recipes recipe = snapshot.getValue(Recipes.class);
-                    if (recipe !=null) {
+                    if (recipe != null) {
                         editTextRecipeName.setText(recipe.getDishName());
+                        editTextPreperation.setText(recipe.getPreparationTime());
+                        editTextDishType.setText(recipe.getDishType());
                         editTextIngredients.setText(recipe.getIngredients());
                         editTextInstructions.setText(recipe.getInstructions());
+                        recipeID = recipe.getID();
                     }
                 } else {
                     Toast.makeText(EditRecipeActivity.this, "Recipe not found!", Toast.LENGTH_SHORT).show();
@@ -60,6 +72,7 @@ public class EditRecipeActivity extends AppCompatActivity {
             }
         });
 
+
         buttonSaveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,16 +83,40 @@ public class EditRecipeActivity extends AppCompatActivity {
     }
 
     private void saveChanges() {
-        String newName = editTextRecipeName.getText().toString().trim();
-        String newIngredients = editTextIngredients.getText().toString().trim();
-        String newInstructions = editTextInstructions.getText().toString().trim();
+        recipeRef.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                String newName = editTextRecipeName.getText().toString().trim();
+                String newPreparationTime = editTextPreperation.getText().toString().trim();
+                String newDishType = editTextDishType.getText().toString().trim();
+                String newIngredients = editTextIngredients.getText().toString().trim();
+                String newInstructions = editTextInstructions.getText().toString().trim();
 
-        // Update recipe data in Firebase
-        recipeRef.child("dishName").setValue(newName);
-        recipeRef.child("ingredients").setValue(newIngredients);
-        recipeRef.child("instructions").setValue(newInstructions);
+                newRecipeRef = FirebaseDatabase.getInstance().getReference("Recipes").child(newName);
+                Recipes recipeNew = new Recipes(newName, newPreparationTime, newDishType, newIngredients, newInstructions, recipeID, authorName);
 
-        Toast.makeText(this, "Recipe updated successfully", Toast.LENGTH_SHORT).show();
+                newRecipeRef.setValue(recipeNew).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(EditRecipeActivity.this, "Successfully updated recipe", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "Failed to update new recipe:", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "ERROR 85 LINIJA KODA!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Intent intent = new Intent(EditRecipeActivity.this, BrowseRecipeActivity.class);
+        intent.putExtra("username", authorName);
+        startActivity(intent);
     }
 
 }

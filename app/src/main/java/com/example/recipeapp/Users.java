@@ -4,7 +4,8 @@ public class Users {
 
     private String username, password;
 
-    public Users() {}
+    public Users() {
+    }
 
     public Users(String username, String password) {
         this.username = username;
@@ -26,8 +27,6 @@ public class Users {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
 
 
 }

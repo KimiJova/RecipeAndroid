@@ -8,15 +8,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -43,15 +46,18 @@ public class BrowseRecipeActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewRecipes);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        username = getIntent().getStringExtra("username");
+
         recipeList = new ArrayList<>();
-        adapter = new RecipeAdapter(recipeList, this);
+        adapter = new RecipeAdapter(recipeList, this, username);
         recyclerView.setAdapter(adapter);
 
         homeButton = findViewById(R.id.btn_home);
         refreshButton = findViewById(R.id.btn_refresh);
         editTextFilter = findViewById(R.id.editTextFilter);
 
-        username = getIntent().getStringExtra("username");
+
+
 
         recipesRef = FirebaseDatabase.getInstance().getReference("Recipes");
 

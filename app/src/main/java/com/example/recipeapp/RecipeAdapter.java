@@ -7,21 +7,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
     private List<Recipes> recipeList;
     private Context context;
+    private String currentUser;
 
 
     // Constructor to initialize the list of recipes
-    public RecipeAdapter(List<Recipes> recipeList, Context context) {
+    public RecipeAdapter(List<Recipes> recipeList, Context context, String currentUser) {
 
         this.recipeList = recipeList;
         this.context = context;
+        this.currentUser = currentUser;
 
     }
 
@@ -59,6 +63,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         holder.preparationTimeTextView.setText(recipe.getPreparationTime());
         holder.dishTypeTextView.setText(recipe.getDishType());
 
+        // Check if the recipe's author matches the current user
+        if (recipe.getRecipeAuthor().equals(currentUser)) {
+            // Show the settings button
+            holder.imageButtonSettings.setVisibility(View.VISIBLE);
+        } else {
+            // Hide the settings button
+            holder.imageButtonSettings.setVisibility(View.GONE);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +84,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             }
         });
 
+        // TODO: 3/26/2024  IMPLEMENT DELETE ITEM
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -85,6 +98,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 //String recipeId = recipeList.get(position).getID();
                 Intent intent = new Intent(context, EditRecipeActivity.class);
                 intent.putExtra("dishName", recipe.getDishName());
+                intent.putExtra("recipeAuthor", recipe.getRecipeAuthor());
                 context.startActivity(intent);
             }
         });

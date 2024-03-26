@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -89,6 +90,7 @@ public class AddRecipeFragment extends Fragment {
 
                                         // Show a toast message indicating success
                                         Toast.makeText(getContext(), "Recipe added successfully!", Toast.LENGTH_SHORT).show();
+                                        hideFragmentContainer();
                                         getActivity().getSupportFragmentManager().popBackStack();
                                     } else {
                                         Toast.makeText(getContext(), "Failed to add recipe!", Toast.LENGTH_SHORT).show();
@@ -107,6 +109,12 @@ public class AddRecipeFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void hideFragmentContainer() {
+        if (getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity()).hideFragmentContainer();
+        }
     }
 }
 

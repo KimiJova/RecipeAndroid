@@ -16,4 +16,6 @@
     <string name="recipe_name">Recipe Name</string>
     <string name="add_new_recipe">Add New Recipe</string>
     <string name="save_changes">Save Changes</string>
+    <string name="dish_name">Dish Name</string>
+    <string name="type_of_dish">Type Of Dish</string>
 </resources>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView welcomeTextView;
     private Button browseButton;
     private Button addNewRecipe;
+    private FrameLayout fragmentLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         welcomeTextView = findViewById(R.id.textViewWelcomeMessage);
         browseButton = findViewById(R.id.buttonBrowseRecipes);
         addNewRecipe = findViewById(R.id.buttonAddRecipe);
+        fragmentLayout = findViewById(R.id.fragmentLayout);
 
         AddRecipeFragment addRecipeFragment = new AddRecipeFragment();
 
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         addNewRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fragmentLayout.setVisibility(View.VISIBLE);
                 Bundle bundle = new Bundle();
                 bundle.putString("username", username);
                 addRecipeFragment.setArguments(bundle);
@@ -53,7 +57,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
 
-
+    public void hideFragmentContainer() {
+        if (fragmentLayout != null) {
+            fragmentLayout.setVisibility(View.GONE);
+        }
     }
 }

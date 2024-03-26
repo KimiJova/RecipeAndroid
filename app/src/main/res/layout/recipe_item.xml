@@ -25,7 +25,7 @@
             android:id="@+id/textDishName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dish Name"
+            android:text="@string/dish_name"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -34,7 +34,7 @@
             android:id="@+id/textPreparationTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Preparation Time"
+            android:text="@string/preparation"
             android:textSize="14sp" />
 
         <!-- Type of Dish -->
@@ -42,7 +42,7 @@
             android:id="@+id/textDishType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Type of Dish"
+            android:text="@string/type_of_dish"
             android:textSize="14sp" />
     </LinearLayout>
 

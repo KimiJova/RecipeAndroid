@@ -9,7 +9,8 @@ public class Recipes {
     private String ID;
     private String recipeAuthor;
 
-    public Recipes() {}
+    public Recipes() {
+    }
 
     public Recipes(String dishName, String preparationTime, String dishType, String ingredients, String instructions, String ID, String recipeAuthor) {
         this.dishName = dishName;

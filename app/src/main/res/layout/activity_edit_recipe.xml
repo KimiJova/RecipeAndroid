@@ -1,32 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
     <EditText
         android:id="@+id/editTextRecipeName2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:hint="@string/recipe_name"
-        android:padding="16dp" />
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/editTextPreparationTime2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextRecipeName2"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/preparation"
+        android:inputType="number"
+        android:padding="12dp" />
+
+    <EditText
+        android:id="@+id/editTextDishType2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPreparationTime2"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/dish_type"
+        android:padding="12dp" />
 
     <EditText
         android:id="@+id/editTextIngredients2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTextRecipeName2"
+        android:layout_below="@id/editTextDishType2"
+        android:layout_marginBottom="16dp"
         android:hint="@string/ingredients"
         android:minLines="4"
-        android:padding="16dp" />
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
     <EditText
         android:id="@+id/editTextInstructions2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextIngredients2"
+        android:layout_marginBottom="16dp"
         android:hint="@string/instructions"
         android:minLines="4"
-        android:padding="16dp" />
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/buttonSaveChanges"
@@ -34,7 +63,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextInstructions2"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
         android:text="@string/save_changes"
-        android:padding="16dp" />
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp" />
 
 </RelativeLayout>
