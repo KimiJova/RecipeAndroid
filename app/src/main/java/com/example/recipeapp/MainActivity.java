@@ -59,6 +59,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Clear all previous activities and start the LoginActivity
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish(); // Finish the current activity to prevent going back to it
+            }
+        });
+
     }
 
     public void hideFragmentContainer() {
