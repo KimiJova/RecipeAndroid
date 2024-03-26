@@ -1,15 +1,24 @@
 package com.example.recipeapp;
 
+
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -18,7 +27,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     private List<Recipes> recipeList;
     private Context context;
     private String currentUser;
-
 
     // Constructor to initialize the list of recipes
     public RecipeAdapter(List<Recipes> recipeList, Context context, String currentUser) {
@@ -36,6 +44,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         TextView dishTypeTextView;
         TextView authorTextView;
         ImageButton imageButtonSettings;
+        ImageView imageRecipe;
+
 
 
         public RecipeViewHolder(View itemView) {
@@ -44,6 +54,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             preparationTimeTextView = itemView.findViewById(R.id.textPreparationTime);
             dishTypeTextView = itemView.findViewById(R.id.textDishType);
             imageButtonSettings = itemView.findViewById(R.id.buttonSettings);
+            imageRecipe = itemView.findViewById(R.id.imageRecipe);
         }
     }
 
@@ -88,7 +99,29 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                return false;
+                Recipes recipe = recipeList.get(position);
+
+                if (recipe.getRecipeAuthor().equals(currentUser)) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setMessage("Are you sure you want to delete this recipe?");
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            recipeList.remove(position);
+                            notifyItemRemoved(position);
+
+                            DatabaseReference recipeRef = FirebaseDatabase.getInstance().getReference("Recipes").child(recipe.getDishName());
+                            recipeRef.removeValue();
+
+                            Toast.makeText(context, "Recipe deleted successfully", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.setNegativeButton("No", null);
+                    builder.show();
+                } else {
+                    Toast.makeText(context, "You can only delete your own recipes!", Toast.LENGTH_SHORT).show();
+                }
+                return true;
             }
         });
 
@@ -100,6 +133,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 intent.putExtra("dishName", recipe.getDishName());
                 intent.putExtra("recipeAuthor", recipe.getRecipeAuthor());
                 context.startActivity(intent);
+            }
+        });
+
+        holder.imageRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
@@ -116,4 +156,5 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         recipeList.addAll(newList);
         notifyDataSetChanged();
     }
+
 }

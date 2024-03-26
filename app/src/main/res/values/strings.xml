@@ -18,4 +18,5 @@
     <string name="save_changes">Save Changes</string>
     <string name="dish_name">Dish Name</string>
     <string name="type_of_dish">Type Of Dish</string>
+    <string name="log_out">Log Out</string>
 </resources>

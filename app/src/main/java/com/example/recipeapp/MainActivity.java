@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView welcomeTextView;
     private Button browseButton;
     private Button addNewRecipe;
+    private Button logOutButton;
     private FrameLayout fragmentLayout;
 
     @Override
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         browseButton = findViewById(R.id.buttonBrowseRecipes);
         addNewRecipe = findViewById(R.id.buttonAddRecipe);
         fragmentLayout = findViewById(R.id.fragmentLayout);
+        logOutButton = findViewById(R.id.logOutButton);
 
         AddRecipeFragment addRecipeFragment = new AddRecipeFragment();
 
