@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 public class AddRecipeFragment extends Fragment {
 
     private EditText editTextRecipeName, editTextPreparationTime, editTextDishType, editTextIngredients, editTextInstructions;
-    private Button buttonAddRecipe;
+    private Button buttonAddRecipe, buttonCancel;
     private FirebaseDatabase db;
     private DatabaseReference ref;
     private String recipeAuthor;
@@ -41,6 +41,7 @@ public class AddRecipeFragment extends Fragment {
         editTextIngredients = view.findViewById(R.id.editTextIngredients);
         editTextInstructions = view.findViewById(R.id.editTextInstructions);
         buttonAddRecipe = view.findViewById(R.id.buttonAddRecipe);
+        buttonCancel = view.findViewById(R.id.buttonCancel);
 
         Bundle args = getArguments();
         if (args != null) {
@@ -105,6 +106,13 @@ public class AddRecipeFragment extends Fragment {
 
                     }
                 });
+            }
+        });
+
+        buttonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getParentFragmentManager().popBackStack();
             }
         });
 

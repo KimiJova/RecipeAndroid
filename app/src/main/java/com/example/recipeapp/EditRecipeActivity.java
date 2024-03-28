@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 public class EditRecipeActivity extends AppCompatActivity {
 
     private EditText editTextRecipeName, editTextIngredients, editTextInstructions, editTextDishType, editTextPreperation;
-    private Button buttonSaveChanges;
+    private Button buttonSaveChanges, buttonCancel;
     private String dishName, authorName, recipeID;
     private DatabaseReference recipeRef;
     private DatabaseReference newRecipeRef;
@@ -39,6 +39,7 @@ public class EditRecipeActivity extends AppCompatActivity {
         editTextIngredients = findViewById(R.id.editTextIngredients2);
         editTextInstructions = findViewById(R.id.editTextInstructions2);
         buttonSaveChanges = findViewById(R.id.buttonSaveChanges);
+        buttonCancel = findViewById(R.id.buttonCancel2);
 
         //Get name from intent extras
         dishName = getIntent().getStringExtra("dishName");
@@ -77,6 +78,13 @@ public class EditRecipeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveChanges();
+            }
+        });
+
+        buttonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

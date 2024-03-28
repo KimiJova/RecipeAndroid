@@ -94,7 +94,7 @@ public class BrowseRecipeActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                // Not used
+                //Not used
             }
         });
     }
@@ -123,7 +123,7 @@ public class BrowseRecipeActivity extends AppCompatActivity {
         });
     }
 
-    // Method to filter recipes based on the dish name
+     //Method to filter recipes based on the dish name
     private void filterRecipes(String query) {
         List<Recipes> filteredList = new ArrayList<>();
         if (query.isEmpty()) {
